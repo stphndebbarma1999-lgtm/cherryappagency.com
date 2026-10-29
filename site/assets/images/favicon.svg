@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="cherry" cx="34%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#FF6FA8"/>
+      <stop offset=".5" stop-color="#E8195F"/>
+      <stop offset="1" stop-color="#A3123F"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7BCB5E"/>
+      <stop offset="1" stop-color="#3E9A45"/>
+    </linearGradient>
+  </defs>
+  <path d="M20 34C21.5 24 27 15 36 9" fill="none" stroke="#3B8A3E" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M44 36C43.5 26 40.5 17 36 9" fill="none" stroke="#3B8A3E" stroke-width="3.2" stroke-linecap="round"/>
+  <path d="M36.5 8.5C41 2.5 51 1.5 58.5 5.5C54 13 44 14.5 36.5 8.5Z" fill="url(#leaf)"/>
+  <path d="M38.5 8.3C44 6.6 50.5 5.9 56 5.9" fill="none" stroke="#2C6E30" stroke-width="1.1" stroke-linecap="round"/>
+  <circle cx="20" cy="46" r="13" fill="url(#cherry)"/>
+  <circle cx="44" cy="48" r="13" fill="url(#cherry)"/>
+  <ellipse cx="15.5" cy="40.5" rx="4" ry="2.6" fill="#fff" opacity=".55" transform="rotate(-35 15.5 40.5)"/>
+  <ellipse cx="39.5" cy="42.5" rx="4" ry="2.6" fill="#fff" opacity=".55" transform="rotate(-35 39.5 42.5)"/>
+</svg>

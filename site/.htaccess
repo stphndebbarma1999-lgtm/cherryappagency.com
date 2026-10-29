@@ -1,0 +1,55 @@
+# Cherry App Agency — Apache configuration for the production site.
+# Upload together with the rest of the site/ folder into the web root (e.g. public_html).
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddDefaultCharset utf-8
+AddType application/manifest+json .webmanifest
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. One canonical origin: https://cherryappagency.com
+  #    Any other host name that reaches this hosting account (www., cherryapp.agency,
+  #    cherryappagency.in, with or without www) and any plain-HTTP request gets a
+  #    single 301 to the same path on the canonical domain.
+  #    If your host or CDN terminates HTTPS before Apache and %{HTTPS} is always "off",
+  #    replace the HTTPS condition with:  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{HTTP_HOST} !^cherryappagency\.com$ [NC,OR]
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://cherryappagency.com%{REQUEST_URI} [R=301,L,NE]
+
+  # 2. /index.html and /folder/index.html -> clean trailing-slash URL
+  RewriteCond %{THE_REQUEST} \s/+((?:[^\s?]*/)?)index\.html[\s?] [NC]
+  RewriteRule ^ https://cherryappagency.com/%1 [R=301,L,NE]
+
+  # 3. /cherry-host -> /cherry-host/ (consistent trailing slashes, in one hop)
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^(.*[^/])$ https://cherryappagency.com/$1/ [R=301,L,NE]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  # Enable only after HTTPS works on cherryappagency.com and you are sure it will stay on:
+  # Header always set Strict-Transport-Security "max-age=31536000"
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json application/manifest+json image/svg+xml application/xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 hour"
+  ExpiresByType text/html "access plus 0 seconds"
+  # CSS and JS are referenced with ?v=N; bump ASSET_VERSION in tools/build.py when they change.
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 30 days"
+  ExpiresByType image/png "access plus 30 days"
+  ExpiresByType image/x-icon "access plus 30 days"
+</IfModule>

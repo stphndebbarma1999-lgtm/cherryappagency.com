@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 720" width="640" height="720">
+  <defs>
+    <linearGradient id="screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE3EE"/>
+      <stop offset="1" stop-color="#FFC2DA"/>
+    </linearGradient>
+    <radialGradient id="cherry" cx="34%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#FF6FA8"/>
+      <stop offset=".5" stop-color="#E8195F"/>
+      <stop offset="1" stop-color="#A3123F"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7BCB5E"/>
+      <stop offset="1" stop-color="#3E9A45"/>
+    </linearGradient>
+    <linearGradient id="blazer" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D9336F"/>
+      <stop offset="1" stop-color="#B3154F"/>
+    </linearGradient>
+    <clipPath id="screenClip">
+      <rect x="194" y="104" width="252" height="532" rx="30"/>
+    </clipPath>
+    <symbol id="pair" viewBox="0 0 64 64">
+      <path d="M20 34C21.5 24 27 15 36 9" fill="none" stroke="#3B8A3E" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M44 36C43.5 26 40.5 17 36 9" fill="none" stroke="#3B8A3E" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M36.5 8.5C41 2.5 51 1.5 58.5 5.5C54 13 44 14.5 36.5 8.5Z" fill="url(#leaf)"/>
+      <circle cx="20" cy="46" r="13" fill="url(#cherry)"/>
+      <circle cx="44" cy="48" r="13" fill="url(#cherry)"/>
+      <ellipse cx="15.5" cy="40.5" rx="4" ry="2.6" fill="#fff" opacity=".55" transform="rotate(-35 15.5 40.5)"/>
+      <ellipse cx="39.5" cy="42.5" rx="4" ry="2.6" fill="#fff" opacity=".55" transform="rotate(-35 39.5 42.5)"/>
+    </symbol>
+  </defs>
+
+  <!-- soft backdrop -->
+  <circle cx="330" cy="380" r="285" fill="#FFE0EC"/>
+  <circle cx="330" cy="380" r="215" fill="#FFF0F6"/>
+  <circle cx="96" cy="190" r="10" fill="#F7C8DD"/>
+  <circle cx="560" cy="520" r="14" fill="#F7C8DD"/>
+  <circle cx="540" cy="120" r="6" fill="#FF4693" opacity=".5"/>
+  <circle cx="110" cy="470" r="6" fill="#FF4693" opacity=".5"/>
+
+  <g transform="rotate(-5 320 370)">
+    <!-- phone shadow and body -->
+    <rect x="186" y="104" width="280" height="560" rx="42" fill="#C2185B" opacity=".12"/>
+    <rect x="180" y="90" width="280" height="560" rx="42" fill="#26232A"/>
+    <rect x="194" y="104" width="252" height="532" rx="30" fill="url(#screen)"/>
+
+    <g clip-path="url(#screenClip)">
+      <!-- hair behind -->
+      <path d="M232 330C224 250 262 196 322 194C384 192 420 246 412 326C408 372 420 420 430 470L214 470C222 420 236 372 232 330Z" fill="#3A2622"/>
+      <!-- neck -->
+      <path d="M298 360H342V396C342 408 298 408 298 396Z" fill="#C98E6C"/>
+      <!-- blouse and blazer -->
+      <path d="M196 640C200 480 248 410 320 402C392 410 440 480 444 640Z" fill="url(#blazer)"/>
+      <path d="M286 408L320 490L354 408C343 404 332 402 320 402C308 402 297 404 286 408Z" fill="#FFFFFF"/>
+      <path d="M286 408L320 490L300 498L262 422Z" fill="#9E1145" opacity=".45"/>
+      <path d="M354 408L320 490L340 498L378 422Z" fill="#9E1145" opacity=".45"/>
+      <!-- face -->
+      <ellipse cx="320" cy="300" rx="60" ry="74" fill="#E2AC8A"/>
+      <ellipse cx="262" cy="306" rx="9" ry="14" fill="#D59C7A"/>
+      <ellipse cx="378" cy="306" rx="9" ry="14" fill="#D59C7A"/>
+      <circle cx="262" cy="326" r="4.5" fill="#FF4693"/>
+      <circle cx="378" cy="326" r="4.5" fill="#FF4693"/>
+      <!-- fringe -->
+      <path d="M258 298C252 232 296 204 334 208C372 212 392 246 384 296C374 262 350 240 318 238C292 240 270 262 258 298Z" fill="#3A2622"/>
+      <!-- brows and eyes -->
+      <path d="M287 284Q298 278 309 283" fill="none" stroke="#3A2622" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M331 283Q342 278 353 284" fill="none" stroke="#3A2622" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M290 303Q298 296 306 303" fill="none" stroke="#2A1D1A" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M334 303Q342 296 350 303" fill="none" stroke="#2A1D1A" stroke-width="3.5" stroke-linecap="round"/>
+      <!-- nose, cheeks, smile -->
+      <path d="M320 308Q316 324 322 328" fill="none" stroke="#B9805F" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="292" cy="330" r="10" fill="#FF6F9E" opacity=".22"/>
+      <circle cx="348" cy="330" r="10" fill="#FF6F9E" opacity=".22"/>
+      <path d="M301 342Q320 360 339 342" fill="#FFFFFF" stroke="#A8494F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+      <!-- self-view tile -->
+      <rect x="368" y="128" width="62" height="86" rx="12" fill="#FFFFFF" opacity=".9"/>
+      <circle cx="399" cy="162" r="13" fill="#F7C8DD"/>
+      <path d="M377 212C379 192 388 184 399 184C410 184 419 192 421 212Z" fill="#F7C8DD"/>
+
+      <!-- call controls (icons only) -->
+      <rect x="194" y="560" width="252" height="76" fill="#26232A" opacity=".08"/>
+      <circle cx="262" cy="596" r="20" fill="#FFFFFF"/>
+      <rect x="257" y="584" width="10" height="17" rx="5" fill="#26232A"/>
+      <path d="M252 596Q252 608 262 608Q272 608 272 596" fill="none" stroke="#26232A" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="320" cy="596" r="24" fill="#C2185B"/>
+      <rect x="306" y="587" width="20" height="18" rx="4" fill="#FFFFFF"/>
+      <path d="M327 592L336 586V606L327 600Z" fill="#FFFFFF"/>
+      <circle cx="378" cy="596" r="20" fill="#FFFFFF"/>
+      <path d="M378 590c-4-6-14-2-10 5l10 10 10-10c4-7-6-11-10-5z" fill="#C2185B"/>
+    </g>
+    <!-- speaker -->
+    <rect x="290" y="114" width="60" height="8" rx="4" fill="#26232A"/>
+  </g>
+
+  <!-- decorative cherries -->
+  <use href="#pair" x="452" y="150" width="120" height="120"/>
+  <use href="#pair" x="62" y="520" width="96" height="96" transform="rotate(-12 110 568)"/>
+  <!-- small hearts -->
+  <path d="M520 360c-8-10-24-2-16 10l16 16 16-16c8-12-8-20-16-10z" fill="#FF4693" opacity=".75"/>
+  <path d="M120 300c-5-6-15-1-10 6l10 10 10-10c5-7-5-12-10-6z" fill="#FF4693" opacity=".55"/>
+</svg>
