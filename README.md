@@ -9,7 +9,8 @@ information and registration-enquiry site for prospective hosts and agencies.
 - `tools/serve.py`: local preview server with real 404s.
 - `tools/check-site.js`: automated link, layout, WhatsApp, SEO and keyboard checks (needs Playwright).
 - `tools/make-images.js`: renders PNG icons and the social preview from the SVGs.
-- `docs/DEPLOYMENT.md`: hosting, HTTPS, domain redirects, staging and Search Console steps.
+- `docs/DEPLOYMENT.md`: Vercel hosting, Hostinger DNS for cherryappagency.com, and Search Console steps.
+- `vercel.json`: Vercel settings (serves `site/` with no build step).
 - `docs/SEO-MAP.md`: page / keyword / title / H1 map.
 - `docs/CONTENT-VERIFICATION.md`: sources, open factual questions and what was deliberately left out.
 - `docs/ASSETS.md`: images, fonts and missing assets.

@@ -1,132 +1,85 @@
-# Deployment and redirects
+# Deployment
 
-Nothing in this file has been carried out yet. No DNS changes, hosting uploads,
-redirects or Search Console setup have been made. These are the steps to follow.
+The site is hosted on **Vercel**, and the domain **cherryappagency.com** is registered at **Hostinger**.
+Only `cherryappagency.com` (and `www.cherryappagency.com`) point at this site.
+`cherryapp.agency` and `cherryappagency.in` are reserved for separate websites and are not
+connected or redirected here.
 
-## 1. What to upload
+Nothing below has been done for you yet. No Vercel project exists and no DNS changes
+have been made. These are the steps.
 
-Upload the **contents** of the `site/` folder into the web root of the hosting account
-for `cherryappagency.com` (usually `public_html/`). Include the hidden `.htaccess` file.
-Do not upload `src/`, `tools/` or `docs/`.
+## 1. Create the Vercel project
 
-```
-public_html/
-  .htaccess  404.html  index.html  robots.txt  sitemap.xml  site.webmanifest
-  favicon.ico  apple-touch-icon.png
-  about/  contact/  cherry-agency/  cherry-app/  cherry-earnings/
-  cherry-host/  cherry-policy/  cherry-withdrawal/  assets/
-```
+1. Go to <https://vercel.com/new> and import `stphndebbarma1999-lgtm/cherryappagency.com`.
+2. Leave the framework as **Other** and don't set a build command. `vercel.json` in the repository
+   already tells Vercel to serve the `site/` folder as-is, with trailing-slash URLs, a
+   `/index.html` → `/` redirect, and security and caching headers.
+3. Deploy. The finished site currently lives on the `claude/cherry-app-agency-website` branch, and
+   `main` only has the README. Either merge that branch into `main` (recommended, so pushes to
+   `main` go live) or set **Settings → Git → Production Branch** to that branch.
+4. Open the `*.vercel.app` URL and check the pages. `/does-not-exist/` should show the 404 page.
 
-The site is plain static HTML, CSS and a small JavaScript file. It needs no PHP,
-database or Node.js on the server. The `.htaccess` file assumes Apache or LiteSpeed,
-which most cPanel and hPanel shared hosts use.
+Vercel serves `site/404.html` automatically for missing pages, with a real 404 status.
+`site/.htaccess` is not used on Vercel. It is kept only in case you ever move to Apache hosting.
 
-## 2. HTTPS first
+## 2. Add the domain in Vercel
 
-Install a TLS certificate for `cherryappagency.com` (and `www.cherryappagency.com`)
-before you rely on the redirects. On cPanel this is usually **SSL/TLS Status → Run AutoSSL**.
-On hPanel it is **Security → SSL**. Then open `https://cherryappagency.com/` and check
-that the browser shows a valid certificate.
+In the project, open **Settings → Domains**:
+1. Add `cherryappagency.com` as the **production** domain.
+2. Add `www.cherryappagency.com` and set it to **Redirect to** `cherryappagency.com` (308, permanent).
 
-## 3. Canonical-domain redirect (already in `.htaccess`)
+Vercel then shows the DNS records it expects. Use the values Vercel shows if they differ from the ones below.
 
-`site/.htaccess` sends every request that is not `https://cherryappagency.com`
-to the same path on `https://cherryappagency.com` with a **301** redirect, in a single hop:
+## 3. Point the domain at Vercel from Hostinger
 
-| Request | Redirects to |
-|---|---|
-| `http://cherryappagency.com/cherry-host/` | `https://cherryappagency.com/cherry-host/` |
-| `https://www.cherryappagency.com/about/` | `https://cherryappagency.com/about/` |
-| `https://cherryapp.agency/cherry-agency/` | `https://cherryappagency.com/cherry-agency/` |
-| `https://cherryappagency.in/` | `https://cherryappagency.com/` |
-| `/cherry-host` (no slash) | `/cherry-host/` |
-| `/index.html`, `/about/index.html` | `/`, `/about/` |
+1. Log in at **hpanel.hostinger.com** → **Domains → Domain portfolio** → **Manage** next to
+   `cherryappagency.com` → **DNS / Nameservers** → **DNS records**.
+   (The domain must be using Hostinger nameservers, `ns1/ns2.dns-parking.com`, for these records to apply.)
+2. Delete the existing **A**, **AAAA** and **ALIAS** records for `@` and the **CNAME** record for `www`.
+   Leave **MX** and **TXT** records, which handle email and verification.
+3. Add:
 
-Paths are preserved, so an old link to a page that exists on the main site
-lands on the same page. A path that doesn't exist redirects and then shows the
-real 404 page with a 404 status. It is not sent to the homepage.
+| Type | Name | Points to | TTL |
+|---|---|---|---|
+| A | `@` | `76.76.21.21` | 3600 |
+| CNAME | `www` | `cname.vercel-dns.com` | 3600 |
 
-If your host or CDN terminates HTTPS before Apache (some Cloudflare setups do this),
-`%{HTTPS}` can always read "off" and the site will loop. If that happens, follow the
-comment in `.htaccess` and use the `X-Forwarded-Proto` condition instead.
+DNS usually updates within an hour, but it can take up to 48 hours. When Vercel shows
+"Valid configuration", it issues the HTTPS certificate automatically.
 
-## 4. Redirecting `cherryapp.agency` and `cherryappagency.in`
+## 4. Check it
 
-Use **one** of these options for each extra domain. Do not upload a second copy
-of the site to them.
-
-### Option A: add them as alias/parked domains (simplest on shared hosting)
-1. In the hosting panel, add `cherryapp.agency` and `cherryappagency.in` as
-   **Aliases** (cPanel → Domains → Create a New Domain, with "Share document root"
-   ticked) or **Parked domains** (hPanel), pointing at the same `public_html`.
-2. At each domain's registrar, point DNS at the host: either use the host's nameservers,
-   or set an `A` record for `@` and `www` to the hosting server's IP address.
-3. Issue TLS certificates for both domains (AutoSSL normally covers aliases), so that
-   `https://cherryapp.agency/...` doesn't show a certificate warning before redirecting.
-4. The existing `.htaccess` rule then 301-redirects them, path for path.
-
-### Option B: registrar or DNS-level forwarding
-If the registrar offers URL forwarding, set **permanent (301) forwarding** to
-`https://cherryappagency.com` with **"forward path" / "path forwarding" enabled**.
-Turn off "masking" or "frame forwarding". It hides the real URL and is bad for search engines.
-
-### Option C: Cloudflare (if the domains use Cloudflare DNS)
-Create a **Redirect Rule** (Rules → Redirect Rules) for each zone:
-- When: hostname equals `cherryapp.agency` or `www.cherryapp.agency`
-- Then: dynamic redirect to `concat("https://cherryappagency.com", http.request.uri.path)`,
-  status **301**, preserve query string.
-Each hostname needs a proxied (orange-cloud) DNS record, for example `A @ 192.0.2.1`,
-so that Cloudflare receives the request.
-
-### Nginx equivalent (if you ever move off Apache)
-```nginx
-server {
-  listen 80; listen 443 ssl;
-  server_name www.cherryappagency.com cherryapp.agency www.cherryapp.agency
-              cherryappagency.in www.cherryappagency.in;
-  # ssl_certificate ... (a certificate covering these names)
-  return 301 https://cherryappagency.com$request_uri;
-}
-server {
-  listen 443 ssl; server_name cherryappagency.com;
-  root /var/www/cherryappagency.com/site;
-  error_page 404 /404.html;
-  location / { try_files $uri $uri/ =404; }
-}
-```
-
-### Check the redirects after setup
 ```bash
-for u in http://cherryappagency.com/ https://www.cherryappagency.com/cherry-host/ \
-         https://cherryapp.agency/cherry-agency/ https://cherryappagency.in/about/ \
-         https://cherryappagency.com/cherry-host https://cherryappagency.com/nope/; do
+for u in https://cherryappagency.com/ https://www.cherryappagency.com/cherry-host/ \
+         https://cherryappagency.com/cherry-host https://cherryappagency.com/index.html \
+         https://cherryappagency.com/nope/; do
   echo "$u -> $(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$u")"
 done
 ```
-Expected: one `301` per redirect to the matching `https://cherryappagency.com/...`
-path, `200` for real pages, and `404` for `/nope/`.
+Expected: `200` for the homepage, `308` redirects to the matching `https://cherryappagency.com/.../`
+URL for `www`, a missing slash and `/index.html`, and `404` for `/nope/`.
 
-## 5. Staging
+## 5. Staging and previews
 
-If you put a copy online for review before launch, keep it out of search results
-**and** private:
-- Protect the staging folder with a password (cPanel → Directory Privacy). `robots.txt`
-  is not access control.
-- Add `Header set X-Robots-Tag "noindex, nofollow"` to the staging `.htaccess`.
-- Remove or edit the host-name redirect rule in the staging `.htaccess`. Otherwise it
-  will redirect the staging site to production.
+Vercel preview deployments (`*.vercel.app` URLs for branches) are not the canonical site.
+Every page's canonical tag points to `https://cherryappagency.com/...`. To keep previews private,
+leave Vercel's **Deployment Protection** (Vercel Authentication) switched on for previews.
 
 ## 6. After launch: search engines
 
 These steps need your own Google and Bing accounts:
-1. Google Search Console → add a **Domain property** for `cherryappagency.com`
-   (verified with a DNS TXT record at the registrar).
+1. In Google Search Console, add a **Domain property** for `cherryappagency.com`. Verify it with the
+   DNS TXT record Google gives you, added in Hostinger's DNS editor.
 2. Submit `https://cherryappagency.com/sitemap.xml`.
-3. Optionally add `cherryapp.agency` and `cherryappagency.in` as properties too, to
-   watch for crawl errors on the redirects.
-4. Bing Webmaster Tools can import the Search Console property.
+3. Bing Webmaster Tools can import the Search Console property.
 
 Submitting a sitemap helps discovery but does not guarantee indexing or rankings.
+
+## A note on the other two domains
+
+If `cherryapp.agency` and `cherryappagency.in` become separate websites, give each one its own
+content and purpose. Copying the pages from this site onto them would create duplicate content
+competing with `cherryappagency.com`. Linking between the sites is fine.
 
 ## 7. Updating content later
 
@@ -135,7 +88,7 @@ Submitting a sitemap helps discovery but does not guarantee indexing or rankings
    page's `"reviewed"` date in `tools/build.py`. It drives the visible review date,
    `dateModified` and the sitemap `lastmod`.
 3. If you changed `styles.css` or `main.js`, increase `ASSET_VERSION` in `tools/build.py`.
-4. Run `python3 tools/build.py` and upload the changed files from `site/`.
+4. Run `python3 tools/build.py`, commit and push. Vercel redeploys automatically from the production branch.
 5. Optional checks: `python3 tools/serve.py 8765` in one terminal, then
    `node tools/check-site.js http://127.0.0.1:8765` (requires Playwright).
 
@@ -144,7 +97,10 @@ To regenerate the PNG icons and social image after changing the SVG logo or hero
 and build the favicon with
 `convert site/assets/images/favicon-64.png -background none -define icon:auto-resize=48,32,16 site/favicon.ico && rm site/assets/images/favicon-64.png`.
 
-## 8. Optional hardening once HTTPS is stable
+## Alternative: Apache / shared hosting
 
-Uncomment the `Strict-Transport-Security` line in `.htaccess` only after you are sure
-every hostname that reaches the site has a working certificate.
+If you ever host on Apache instead (for example Hostinger web hosting), upload the **contents** of
+`site/` into `public_html/`, including `.htaccess`. It sends any other host name and plain HTTP to
+`https://cherryappagency.com` on the same path, adds trailing slashes, serves the 404 page and
+sets caching headers. Because that rule redirects every host except `cherryappagency.com`, don't
+share that `public_html` folder with the other two domains' websites.
