@@ -10,9 +10,9 @@ const PAGES = ['/', '/cherry-agency/', '/cherry-app/', '/cherry-host/', '/cherry
   '/cherry-withdrawal/', '/cherry-policy/', '/about/', '/contact/'];
 const WIDTHS = [360, 390, 768, 1024, 1280];
 const WA = {
-  host: 'https://wa.me/919233262700?text=Hi%2C%20I%20want%20information%20about%20joining%20Cherry%20App%20as%20a%20host.',
-  agency: 'https://wa.me/919233262700?text=Hi%2C%20I%20want%20information%20about%20Cherry%20agency%20registration.',
-  general: 'https://wa.me/919233262700?text=Hi%2C%20I%20have%20a%20question%20about%20Cherry%20App.',
+  host: 'https://wa.me/917975943812?text=Hi%2C%20I%20want%20information%20about%20joining%20Cherry%20App%20as%20a%20host.',
+  agency: 'https://wa.me/917975943812?text=Hi%2C%20I%20want%20information%20about%20Cherry%20agency%20registration.',
+  general: 'https://wa.me/917975943812?text=Hi%2C%20I%20have%20a%20question%20about%20Cherry%20App.',
 };
 
 let failures = 0;
