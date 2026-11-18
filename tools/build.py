@@ -20,13 +20,13 @@ DOMAIN = "https://cherryappagency.com"
 SITE_NAME = "Cherry App Agency"
 ASSET_VERSION = "2"
 
-WA_BASE = "https://wa.me/917975943812"
+WA_BASE = "https://wa.me/919233262700"
 WA = {
     "host": WA_BASE + "?text=Hi%2C%20I%20want%20information%20about%20joining%20Cherry%20App%20as%20a%20host.",
     "agency": WA_BASE + "?text=Hi%2C%20I%20want%20information%20about%20Cherry%20agency%20registration.",
     "general": WA_BASE + "?text=Hi%2C%20I%20have%20a%20question%20about%20Cherry%20App.",
 }
-PHONE_DISPLAY = "+91 7975943812"
+PHONE_DISPLAY = "+91 9233262700"
 
 # Change a page's "reviewed" value only when its content is actually reviewed
 # or edited. It feeds the visible review date, dateModified and sitemap lastmod.
@@ -81,8 +81,8 @@ PAGES = [
     },
     {
         "src": "contact.html", "path": "/contact/", "reviewed": "2026-10-29", "wa": "general",
-        "title": "Contact Cherry App Agency | WhatsApp +91 7975943812",
-        "description": "Contact Cherry App Agency on WhatsApp at +91 7975943812 for host or agency registration enquiries and general Cherry App questions.",
+        "title": "Contact Cherry App Agency | WhatsApp +91 9233262700",
+        "description": "Contact Cherry App Agency on WhatsApp at +91 9233262700 for host or agency registration enquiries and general Cherry App questions.",
         "crumb": "Contact", "type": "ContactPage",
     },
     {
@@ -156,7 +156,7 @@ def structured_data(page):
             "logo": {"@type": "ImageObject", "url": DOMAIN + "/assets/images/cherry-logo.png", "width": 512, "height": 512},
             "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+91-7975943812",
+                "telephone": "+91-9233262700",
                 "contactType": "registration enquiries",
                 "availableLanguage": ["English"],
             },

@@ -13,7 +13,7 @@ Every indexable page has a self-referencing canonical and appears in `sitemap.xm
 | `/cherry-withdrawal/` | Cherry app withdrawal | Cherry minimum withdrawal, Cherry payment policy | Cherry App Withdrawal: Minimum, Review Time & Payment Policy | Cherry App Withdrawal Rules and Payment Policy |
 | `/cherry-policy/` | Cherry app policy | Cherry agency policy, Cherry host rules | Cherry App Policy: Host Rules, Warnings & Account Bans | Cherry App Policy: Host Rules and Agency Conditions |
 | `/about/` | About this website | Independent Cherry App information | About Cherry App Agency \| Independent Information Website | About Cherry App Agency |
-| `/contact/` | Contact / WhatsApp enquiries | Cherry registration enquiry | Contact Cherry App Agency \| WhatsApp +91 7975943812 | Contact Cherry App Agency |
+| `/contact/` | Contact / WhatsApp enquiries | Cherry registration enquiry | Contact Cherry App Agency \| WhatsApp +91 9233262700 | Contact Cherry App Agency |
 | `/404.html` | — (noindex, not in sitemap) | — | Page Not Found \| Cherry App Agency | Page not found |
 
 Not created, on purpose: `/cherry-app-agency/` (it would duplicate the homepage or the
