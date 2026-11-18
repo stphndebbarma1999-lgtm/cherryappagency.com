@@ -53,7 +53,7 @@ Each item is flagged next to the relevant claim and listed in the table at
 - No INR conversions. The exchange method is unverified.
 - No FAQPage, SoftwareApplication, rating or address structured data.
 - Cherry's separate support details from the policy are not published. The only contact
-  is the website's WhatsApp enquiry number, +91 7975943812.
+  is the website's WhatsApp enquiry number, +91 9233262700.
 - No forms and no requests for identity documents.
 
 ## When something is confirmed
